@@ -1,0 +1,60 @@
+# Playwright Automation
+
+A scalable end-to-end test automation framework built with **Playwright** and **JavaScript** for reliable web application testing.
+
+This project follows industry best practices such as **Page Object Model (POM)**, clean test structure, and reusable utilities to ensure maintainability and scalability.
+
+## 🚀 Tech Stack
+- Playwright
+- JavaScript (Node.js)
+- npm
+
+## 📁 Project Structure
+playwright-automation/
+├── tests/ # Test specs
+│ ├── auth/
+│ │ └── login.spec.js
+│ └── home/
+│ └── home.spec.js
+│
+├── pages/ # Page Object Models
+│ ├── login.page.js
+│ └── home.page.js
+│
+├── utils/ # Utilities & helpers
+│ └── test-data.js
+│
+├── fixtures/ # Static test data (optional)
+│
+├── playwright.config.js # Playwright configuration
+├── package.json
+├── README.md
+└── .gitignore
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+git clone https://github.com/<your-username>/playwright-automation.git
+cd playwright-automation
+
+### 2️⃣ Install Dependencies
+npm install
+
+### 3️⃣ Install Playwright Browsers
+npx playwright install
+
+### ▶️ Running Tests
+- Run All Tests
+npx playwright test
+
+-Run Tests in Headed Mode
+npx playwright test --headed
+
+-Run a Specific Test File
+npx playwright test tests/auth/login.spec.js
+
+-Run Tests in a Specific Browser
+npx playwright test --project=chromium
+
+-Run Tests in Debug Mode
+npx playwright test --debug
