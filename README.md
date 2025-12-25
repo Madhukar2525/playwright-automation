@@ -9,32 +9,15 @@ This project follows industry best practices such as **Page Object Model (POM)**
 - JavaScript (Node.js)
 - npm
 
-## 📁 Project Structure
-playwright-automation/
-├── tests/ # Test specs
-│ ├── auth/
-│ │ └── login.spec.js
-│ └── home/
-│ └── home.spec.js
-│
-├── pages/ # Page Object Models
-│ ├── login.page.js
-│ └── home.page.js
-│
-├── utils/ # Utilities & helpers
-│ └── test-data.js
-│
-├── fixtures/ # Static test data (optional)
-│
-├── playwright.config.js # Playwright configuration
-├── package.json
-├── README.md
-└── .gitignore
 
 ## ⚙️ Setup Instructions
 
+## Branches:
+- develop → Production-ready Playwright framework using POM & fixtures
+- playwright-practice → Learning branch with raw Playwright test cases for API practice
+
 ### 1️⃣ Clone the Repository
-git clone https://github.com/<your-username>/playwright-automation.git
+git clone https://github.com/Madhukar2525/playwright-automation.git
 cd playwright-automation
 
 ### 2️⃣ Install Dependencies
