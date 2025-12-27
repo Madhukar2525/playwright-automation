@@ -1,6 +1,12 @@
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 
+const firstName = "Steve2";
+const lastName = "Irwin2";
+const emailId = firstName+"."+lastName+"@gmail.com"
+const fullName = firstName+" "+lastName;
+const password = firstName+"@123"
+
 test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await page.goto('https://automationexercise.com');
     await expect(page).toHaveTitle('Automation Exercise');
@@ -12,10 +18,10 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await expect(page.locator('text=New User Signup!')).toBeVisible();
 
     await page.locator('[data-qa="signup-name"]').click();
-    await page.locator('[data-qa="signup-name"]').fill('Steve Irwin');
+    await page.locator('[data-qa="signup-name"]').fill(fullName);
 
     await page.locator('[data-qa="signup-email"]').click();
-    await page.locator('[data-qa="signup-email"]').fill('steve.irwin@gmail.com');
+    await page.locator('[data-qa="signup-email"]').fill(emailId);
     
     await page.locator('[data-qa="signup-button"]').click();
     await expect(page).toHaveTitle('Automation Exercise - Signup');
@@ -24,10 +30,8 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await page.locator('input[type=radio][value="Mr"]').check();
     await expect(page.locator('input[type=radio][value="Mr"]')).toBeChecked()
 
-    await page.locator('[data-qa="password"]').fill('Steve@123');
+    await page.locator('[data-qa="password"]').fill(password);
 
-    // await page.locator('[data-qa="days"]').click();
-    // await page.waitForTimeout(3000);
     await page.locator('[data-qa="days"]').selectOption('1');
     await expect(page.locator('[data-qa="days"] option:checked')).toHaveText('1')
 
@@ -44,10 +48,10 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await expect(page.getByRole('checkbox', {name: "Receive special offers from our partners!"})).toBeChecked();
 
     await page.locator('[data-qa="first_name"]').click()
-    await page.locator('[data-qa="first_name"]').fill("Steve");
+    await page.locator('[data-qa="first_name"]').fill(firstName);
 
     await page.locator('[data-qa="last_name"]').click()
-    await page.locator('[data-qa="last_name"]').fill('Irwin');
+    await page.locator('[data-qa="last_name"]').fill(lastName);
 
     await page.locator('[data-qa="company"]').click()
     await page.locator('[data-qa="company"]').fill('Amazon');
@@ -84,7 +88,7 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
 
     await expect(page).toHaveURL("https://automationexercise.com");
     await expect(page).toHaveTitle("Automation Exercise");
-    await expect(page.locator(`text=Logged in as Steve Irwin`)).toBeVisible();
+    await expect(page.locator(`text=Logged in as ${fullName}`)).toBeVisible();
 
     await page.locator('text=" Delete Account "').click();
     await expect(page).toHaveTitle('Automation Exercise - Account Created');

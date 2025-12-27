@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('TC02: Login User with correct email and password @tc2 @smoke @regression', async({page}) => {
-    const email = "john.cena@gmail.com";
-    const password = "John@123";
-    const name = "John Cena";
+test('TC02: Login User with correct email and password @tc2 @smoke @regression', async ({ page }) => {
+    const firstName = "Steve";
+    const lastName = "Irwin";
+    const email = firstName + "." + lastName + "@gmail.com";
+    const fullName = firstName + " " + lastName;
+    const password = firstName + "@123"
 
     await page.goto("https://automationexercise.com");
     await expect(page).toHaveURL("https://automationexercise.com");
@@ -22,6 +24,11 @@ test('TC02: Login User with correct email and password @tc2 @smoke @regression',
     await page.locator('[data-qa="login-button"]').click();
     await expect(page).toHaveURL("https://automationexercise.com");
     await expect(page).toHaveTitle("Automation Exercise");
-    await expect(page.locator(`text=Logged in as ${name}`)).toBeVisible();
+    await expect(page.locator(`text=Logged in as ${fullName}`)).toBeVisible();
+
+    await page.locator('text=Logout').click();
+    await expect(page).toHaveURL("https://automationexercise.com/login");
+    await expect(page).toHaveTitle("Automation Exercise - Signup / Login");
+
     
 })

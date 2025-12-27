@@ -14,7 +14,7 @@ This project follows industry best practices such as **Page Object Model (POM)**
 
 ## Branches:
 - develop → Production-ready Playwright framework using POM & fixtures
-- playwright-practice → Learning branch with raw Playwright test cases for API practice
+- playwright-practice → Learning branch with raw Playwright test cases for Playwright API practice
 
 ### 1️⃣ Clone the Repository
 git clone https://github.com/Madhukar2525/playwright-automation.git
@@ -32,6 +32,10 @@ npx playwright test
 
 -Run Tests in Headed Mode
 npx playwright test --headed
+
+-Run Test with specific tag
+npx playwright test -g "@<tag_name>"
+For eg. npx playwright test -g "@smoke"
 
 -Run a Specific Test File
 npx playwright test tests/auth/login.spec.js
