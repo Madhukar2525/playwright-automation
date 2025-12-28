@@ -41,11 +41,15 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await page.locator('[data-qa="years"]').selectOption('1998');
     await expect(page.locator('[data-qa="years"] option:checked')).toHaveText('1998');
 
-    await page.getByRole('checkbox', {name: 'Sign up for our newsletter!'}).check();
-    await expect(page.getByRole('checkbox', {name: 'Sign up for our newsletter!'})).toBeChecked();
+    // await page.getByRole('checkbox', {name: 'Sign up for our newsletter!'}).check();
+    // await expect(page.getByRole('checkbox', {name: 'Sign up for our newsletter!'})).toBeChecked();
+    await page.locator('input[type="checkbox"][name="newsletter"]').check();
+    await expect(page.locator('input[type="checkbox"][name="newsletter"]')).toBeChecked()
 
-    await page.getByRole('checkbox', {name: "Receive special offers from our partners!"}).check();
-    await expect(page.getByRole('checkbox', {name: "Receive special offers from our partners!"})).toBeChecked();
+    // await page.getByRole('checkbox', {name: "Receive special offers from our partners!"}).check();
+    // await expect(page.getByRole('checkbox', {name: "Receive special offers from our partners!"})).toBeChecked();
+    await page.locator('input[type="checkbox"][name="optin"]').check();
+    await expect(page.locator('input[type="checkbox"][name="optin"]')).toBeChecked();
 
     await page.locator('[data-qa="first_name"]').click()
     await page.locator('[data-qa="first_name"]').fill(firstName);
