@@ -1,0 +1,46 @@
+name: Playwright CI
+
+# Triggers: run on push & PR
+on:
+  push:
+    branches: [ "develop", "playwright-practice" ]
+  pull_request:
+    branches: [ "develop", "playwright-practice" ]
+
+jobs:
+  test:
+    name: Run Playwright tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # 1) Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # 2) Setup Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "18"   # or match your package.json
+
+      # 3) Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4) Install Playwright browsers
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # 5) Run tests
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      # 6) Upload HTML report
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
