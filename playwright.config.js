@@ -14,6 +14,12 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  testMatch: [
+    '**/Test_cases/**/*.spec.js',  // Only run test cases
+  ],
+  // testIgnore: [
+  //   './tests/Practive_elements/**',
+  // ],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -39,7 +45,7 @@ export default defineConfig({
 
     actionTimeout: 5_000,
 
-    headless: false,
+    headless: !!process.env.CI,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure'
