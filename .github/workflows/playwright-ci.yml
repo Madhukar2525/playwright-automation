@@ -3,10 +3,10 @@ name: Playwright CI
 # Triggers: run on push & PR
 on:
   workflow_dispatch:
-  push:
-    branches: [ "develop", "playwright-practice" ]
-  pull_request:
-    branches: [ "develop", "playwright-practice" ]
+  # push:
+  #   branches: [ "develop", "playwright-practice" ]
+  # pull_request:
+  #   branches: [ "develop", "playwright-practice" ]
 
 jobs:
   test:
