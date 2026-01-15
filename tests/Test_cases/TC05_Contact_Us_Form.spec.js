@@ -9,22 +9,18 @@ test('TC05: Contact Us Form @tc5 @regression', async ({ page }) => {
     const fullName = firstName + " " + lastName;
     const password = firstName + "@123"
 
-    await page.goto("https://automationexercise.com");
+    await page.goto("https://automationexercise.com", { waitUntil: 'domcontentloaded'});
     await expect(page).toHaveURL("https://automationexercise.com");
     await expect(page).toHaveTitle("Automation Exercise");
 
     await page.locator('text=Contact Us').click();
     await expect(page.locator('text=Get In Touch')).toBeVisible();
-    await page.locator('[data-qa="name"]').click();
     await page.locator('[data-qa="name"]').fill(firstName);
 
-    await page.locator('[data-qa="email"]').click();
     await page.locator('[data-qa="email"]').fill(email);
 
-    await page.locator('[data-qa="subject"]').click();
     await page.locator('[data-qa="subject"]').fill('Refund is not credited');
 
-    await page.locator('[data-qa="message"]').click();
     await page.locator('[data-qa="message"]').fill('I cancelled one order which was prepaid, the parcel has been given to delivery person, but I havent received the refund amount yet.');
 
     // await page.setInputFiles('input[type="file"]', 'test-data/dummy_file.pdf');

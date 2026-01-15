@@ -5,7 +5,7 @@ test.describe("TC03: Login User with incorrect credentials @tc3 @regression", ()
         const email = "Steve.Irwin.wrong@gmail.com";
         const password = "Steve@123"
 
-        await page.goto('https://automationexercise.com')
+        await page.goto('https://automationexercise.com', { waitUntil: 'domcontentloaded'})
         await expect(page).toHaveURL('https://automationexercise.com');
         await expect(page).toHaveTitle('Automation Exercise');
 
@@ -13,10 +13,8 @@ test.describe("TC03: Login User with incorrect credentials @tc3 @regression", ()
         await expect(page).toHaveURL('https://automationexercise.com/login');
         await expect(page).toHaveTitle('Automation Exercise - Signup / Login');
 
-        await page.locator('[data-qa="login-email"]').click();
         await page.locator('[data-qa="login-email"]').fill(email);
 
-        await page.locator('[data-qa="login-password"]').click();
         await page.locator('[data-qa="login-password"]').fill(password);
 
         await page.locator('[data-qa="login-button"]').click();
@@ -28,7 +26,7 @@ test.describe("TC03: Login User with incorrect credentials @tc3 @regression", ()
         const email = "Steve.Irwin@gmail.com";
         const password = "Incorrect@123"
 
-        await page.goto('https://automationexercise.com')
+        await page.goto('https://automationexercise.com', { waitUntil: 'domcontentloaded'})
         await expect(page).toHaveURL('https://automationexercise.com');
         await expect(page).toHaveTitle('Automation Exercise');
 
@@ -36,10 +34,8 @@ test.describe("TC03: Login User with incorrect credentials @tc3 @regression", ()
         await expect(page).toHaveURL('https://automationexercise.com/login');
         await expect(page).toHaveTitle('Automation Exercise - Signup / Login');
 
-        await page.locator('[data-qa="login-email"]').click();
         await page.locator('[data-qa="login-email"]').fill(email);
 
-        await page.locator('[data-qa="login-password"]').click();
         await page.locator('[data-qa="login-password"]').fill(password);
 
         await page.locator('[data-qa="login-button"]').click();

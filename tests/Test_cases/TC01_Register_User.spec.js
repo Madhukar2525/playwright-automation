@@ -8,7 +8,7 @@ const fullName = firstName+" "+lastName;
 const password = firstName+"@123"
 
 test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
-    await page.goto('https://automationexercise.com');
+    await page.goto('https://automationexercise.com', { waitUntil: 'domcontentloaded'});
     await expect(page).toHaveTitle('Automation Exercise');
     await expect(page).toHaveURL("https://automationexercise.com");
 
@@ -17,10 +17,8 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await expect(page).toHaveURL("https://automationexercise.com/login");
     await expect(page.locator('text=New User Signup!')).toBeVisible();
 
-    await page.locator('[data-qa="signup-name"]').click();
     await page.locator('[data-qa="signup-name"]').fill(fullName);
 
-    await page.locator('[data-qa="signup-email"]').click();
     await page.locator('[data-qa="signup-email"]').fill(emailId);
     
     await page.locator('[data-qa="signup-button"]').click();
@@ -51,34 +49,25 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await page.locator('input[type="checkbox"][name="optin"]').check();
     await expect(page.locator('input[type="checkbox"][name="optin"]')).toBeChecked();
 
-    await page.locator('[data-qa="first_name"]').click()
     await page.locator('[data-qa="first_name"]').fill(firstName);
 
-    await page.locator('[data-qa="last_name"]').click()
     await page.locator('[data-qa="last_name"]').fill(lastName);
 
-    await page.locator('[data-qa="company"]').click()
     await page.locator('[data-qa="company"]').fill('Amazon');
 
-    await page.locator('[data-qa="address"]').click()
     await page.locator('[data-qa="address"]').fill('1/10, Apple street, ');
 
-    await page.locator('[data-qa="address2"]').click()
     await page.locator('[data-qa="address2"]').fill('Opp. Cinema hall');
 
     await page.locator('[data-qa="country"]').selectOption('India');
     await expect(page.locator('[data-qa="country"] option:checked')).toHaveText('India')
 
-    await page.locator('[data-qa="state"]').click()
     await page.locator('[data-qa="state"]').fill('Maharashtra');
 
-    await page.locator('[data-qa="city"]').click()
     await page.locator('[data-qa="city"]').fill('Mumbai');
 
-    await page.locator('[data-qa="zipcode"]').click()
     await page.locator('[data-qa="zipcode"]').fill('400001');
 
-    await page.locator('[data-qa="mobile_number"]').click()
     await page.locator('[data-qa="mobile_number"]').fill('9876543210');
 
     await page.locator('[data-qa="create-account"]').click()
