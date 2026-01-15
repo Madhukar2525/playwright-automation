@@ -1,12 +1,20 @@
 name: Playwright CI
 
-# Triggers: run on push & PR
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ "develop", "playwright-practice" ]
-  # pull_request:
-  #   branches: [ "develop", "playwright-practice" ]
+    inputs:
+      test_tag:
+        description: 'Select which test tag to run'
+        required: true
+        default: '@regression'
+        type: choice
+        options:
+          - '@smoke'
+          - '@regression'
+  push:
+    branches: [ "develop", "playwright-practice" ]
+  pull_request:
+    branches: [ "develop", "playwright-practice" ]
 
 jobs:
   test:
@@ -23,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: "18"   # or match your package.json
+          node-version: "18"
 
       # 3) Install dependencies
       - name: Install dependencies
@@ -35,7 +43,10 @@ jobs:
 
       # 5) Run tests
       - name: Run Playwright tests
-        run: npx playwright test
+        run: |
+          TAG=${{ github.event.inputs.test_tag || '@regression' }}
+          echo "Running tests with tag: $TAG"
+          npx playwright test --grep $TAG
 
       # 6) Upload HTML report
       - name: Upload Playwright report
