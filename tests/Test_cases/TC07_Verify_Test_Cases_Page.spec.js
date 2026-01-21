@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('TC06: Verify Test Cases Page @tc6 @regression', async({page}) => {
+test('TC07: Verify Test Cases Page @tc7 @regression', async({page}) => {
     await page.goto("https://automationexercise.com", { waitUntil: 'domcontentloaded'});
     await expect(page).toHaveURL("https://automationexercise.com");
     await expect(page).toHaveTitle("Automation Exercise");

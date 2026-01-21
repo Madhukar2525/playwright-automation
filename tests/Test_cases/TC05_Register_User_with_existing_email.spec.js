@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('TC04: Register User with existing email @tc4 @regression', async({page}) => {
+test('TC05: Register User with existing email @tc5 @regression', async({page}) => {
     const firstName = "Steve";
     const lastName = "Irwin";
     const email = firstName + "." + lastName + "@gmail.com";

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import path from 'path';
 
 
-test('TC05: Contact Us Form @tc5 @regression', async ({ page }) => {
+test('TC05: Contact Us Form @tc6 @regression', async ({ page }) => {
     const firstName = "Steve";
     const lastName = "Irwin";
     const email = firstName + "." + lastName + "@gmail.com";

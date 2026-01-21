@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe("TC03: Login User with incorrect credentials @tc3 @regression", () => {
-    test('Login User with incorrect email and correct password', async({page}) => {
+test.describe("TC03: Login User with incorrect credentials @regression", () => {
+    test('Login User with incorrect email and correct password @tc3', async({page}) => {
         const email = "Steve.Irwin.wrong@gmail.com";
         const password = "Steve@123"
 
@@ -22,7 +22,7 @@ test.describe("TC03: Login User with incorrect credentials @tc3 @regression", ()
         await expect(page.locator('text=Your email or password is incorrect!')).toBeVisible();
     });
 
-    test('Login User with correct email and incorrect password', async({page}) => {
+    test('Login User with correct email and incorrect password @tc4', async({page}) => {
         const email = "Steve.Irwin@gmail.com";
         const password = "Incorrect@123"
 
