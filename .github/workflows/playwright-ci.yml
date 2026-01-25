@@ -11,10 +11,10 @@ on:
         options:
           - '@smoke'
           - '@regression'
-  push:
-    branches: [ "develop", "playwright-practice" ]
-  pull_request:
-    branches: [ "develop", "playwright-practice" ]
+  # push:
+  #   branches: [ "develop", "playwright-practice" ]
+  # pull_request:
+  #   branches: [ "develop", "playwright-practice" ]
 
 jobs:
   test:
