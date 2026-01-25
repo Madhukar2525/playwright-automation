@@ -3,9 +3,9 @@ import path from 'node:path';
 
 const firstName = "Steve2";
 const lastName = "Irwin2";
-const emailId = firstName+"."+lastName+"@gmail.com"
-const fullName = firstName+" "+lastName;
-const password = firstName+"@123"
+const emailId = `${firstName}.${lastName}@gmail.com`
+const fullName = `${firstName} ${lastName}`
+const password = `${firstName}@123`
 
 test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await page.goto('https://automationexercise.com', { waitUntil: 'domcontentloaded'});
@@ -91,6 +91,4 @@ test('TC01: Register User @tc1 @smoke @regression', async({page}) => {
     await page.locator('[data-qa="continue-button"]').click()
     await expect(page).toHaveURL("https://automationexercise.com");
     await expect(page).toHaveTitle("Automation Exercise");
-
-    await page.waitForTimeout(3000);
 });
