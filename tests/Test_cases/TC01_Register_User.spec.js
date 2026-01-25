@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import path from 'node:path';
 
 const firstName = "Steve2";
 const lastName = "Irwin2";
