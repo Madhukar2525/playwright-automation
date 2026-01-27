@@ -1,0 +1,58 @@
+{
+    "registerUsers":{
+        "Mark": {
+            "title": "Mr",
+            "firstName": "Mark",
+            "lastName": "Henry",
+            "emailId": "mark.henry@gmail.com",
+            "fullName": "Mark Henry",
+            "password": "Mark@123",
+            "dob":{
+                "day": "1",
+                "month": "1",
+                "year": "1990"
+            },
+            "company": "Amazon",
+            "address": "1/10, Apple street",
+            "address2": "near Cinema hall",
+            "country": "Canada",
+            "state": "Maharashtra",
+            "city": "Mumbai",
+            "zipcode": "400001",
+            "mobile": "9876543210"
+        },
+        "Randy": {
+            "title": "Mr",
+            "firstName": "Randy",
+            "lastName": "Orton",
+            "emailId": "randy.orton@gmail.com",
+            "fullName": "Randy Orton",
+            "password": "Randy@123",
+            "dob":{
+                "day": "15",
+                "month": "9",
+                "year": "1980"
+            },
+            "company": "Microsoft",
+            "address": "330, 7 Bunglow street",
+            "address2": "opp. to post office",
+            "country": "Singapore",
+            "state": "Maharashtra",
+            "city": "Mumbai",
+            "zipcode": "400003",
+            "mobile": "9988776655"
+        }
+    },
+    "loginUsers":{
+        "Steve": {
+            "emailId": "Steve.Irwin@gmai.com",
+            "password": "Steve@123",
+            "fullName": "Steve Irwin"
+        },
+        "John": {
+            "emailId": "John.Cena@gmai.com",
+            "password": "John@123",
+            "fullName": "John Cena"
+        }
+    }
+}
