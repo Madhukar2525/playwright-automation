@@ -5,7 +5,7 @@ import { AuthPage } from '../../src/pages/auth.page';
 import { RegisterPage } from '../../src/pages/register.page';
 import { RegisterNewUserFlow } from '../../src/flows/registerNewUser.flow';
 
-test.describe('@regression', () => {
+test.describe('Registration Test Cases', { tag: '@regression' }, () => {
     /** @type {HomePage} */
     let homepage;
 
@@ -24,7 +24,7 @@ test.describe('@regression', () => {
         registerpage = new RegisterPage(page);
         await homepage.launchHomePage();
     })
-    test('TC01: Register User @tc01', async ({ page }) => {
+    test('TC01: Register User', { tag: ['@tc01', '@smoke'] }, async ({ page }) => {
         const markUser = users.registerUsers.Mark;
 
         await homepage.clickSignUpAndLogin();
@@ -41,7 +41,7 @@ test.describe('@regression', () => {
         await authpage.deleteAccount();
     });
 
-    test('Quick register user flow @quick', async({ page }) => {
+    test('Quick register user flow', { tag: ['@smoke', '@quick'] }, async({ page }) => {
         const registerNewUserFlow = new RegisterNewUserFlow(page);
         const randyUser = users.registerUsers.Randy;
         await registerNewUserFlow.registerNewUser(randyUser);

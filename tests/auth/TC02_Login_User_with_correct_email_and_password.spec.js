@@ -4,7 +4,7 @@ import { LoginPage } from '../../src/pages/login.page';
 import { AuthPage } from '../../src/pages/auth.page';
 import users from '../../src/test-data/users.json' assert { type: 'json'};
 
-test.describe('@regression', () => {
+test.describe('Login Test Cases', { tag: '@regression' }, () => {
     /** @type {HomePage} */
     let homepage;
 
@@ -22,7 +22,7 @@ test.describe('@regression', () => {
         // Launch website
         await homepage.launchHomePage();
     });
-    test('TC02: Login User with correct email and password @tc02 @smoke', async ({ page }) => {
+    test('TC02: Login User with correct email and password', { tag: ['@tc02', '@smoke'] }, async ({ page }) => {
         const johnUser = users.loginUsers.John;
 
         await homepage.clickSignUpAndLogin();
