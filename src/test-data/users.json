@@ -45,12 +45,16 @@
     },
     "loginUsers":{
         "Steve": {
-            "emailId": "Steve.Irwin@gmai.com",
+            "firstName": "Steve",
+            "lastName": "Irwin",
+            "emailId": "Steve.Irwin@gmail.com",
             "password": "Steve@123",
             "fullName": "Steve Irwin"
         },
         "John": {
-            "emailId": "John.Cena@gmai.com",
+            "firstName": "John",
+            "lastName": "Cena",
+            "emailId": "John.Cena@gmail.com",
             "password": "John@123",
             "fullName": "John Cena"
         }
