@@ -72,7 +72,7 @@ export class HomePage {
         await expect(this.page).toHaveURL("https://automationexercise.com/contact_us");
     }
 
-    async hardVerifyHomepage(){
+    async verifyHomepage(){
         await expect(this.page).toHaveTitle('Automation Exercise');
         await expect(this.page).toHaveURL("https://automationexercise.com");
         await expect(this.leftSideBar).toBeVisible();
