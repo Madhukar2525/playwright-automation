@@ -24,30 +24,42 @@ export class HomePage {
 
     async launchHomePage() {
         await this.page.goto('https://automationexercise.com', { waitUntil: 'domcontentloaded' });
-        await expect(this.page).toHaveTitle('Automation Exercise');
-        await expect(this.page).toHaveURL("https://automationexercise.com");
     }
 
     async clickHome(){
         await this.homeButton.click();
+    }
+
+    async verifyHomepage(){
         await expect(this.page).toHaveTitle('Automation Exercise');
         await expect(this.page).toHaveURL("https://automationexercise.com");
+        await expect(this.leftSideBar).toBeVisible();
+        await expect(this.featuresItems).toBeVisible();
     }
 
     async clickProduct(){
         await this.productButton.click();
+    }
+
+    async verifyProductPage(){
         await expect(this.page).toHaveTitle('Automation Exercise - All Products');
         await expect(this.page).toHaveURL("https://automationexercise.com/products");
     }
 
     async clickCart(){
         await this.cartButton.click();
+    }
+
+    async verifyCartPage(){
         await expect(this.page).toHaveTitle('Automation Exercise - Checkout');
         await expect(this.page).toHaveURL("https://automationexercise.com/view_cart");
     }
 
     async clickSignUpAndLogin(){
         await this.signAndLoginButton.click();
+    }
+
+    async verifySignUpAndLoginPage(){
         await expect(this.page).toHaveTitle('Automation Exercise - Signup / Login');
         await expect(this.page).toHaveURL("https://automationexercise.com/login");
         await expect(this.newUserSignupHeading).toBeVisible();
@@ -56,6 +68,9 @@ export class HomePage {
 
     async clickTestCases(){
         await this.testCasesButton.click();
+    }
+
+    async verifyTestCasesPage(){
         await expect(this.page).toHaveTitle('Automation Practice Website for UI Testing - Test Cases');
         await expect(this.page).toHaveURL("https://automationexercise.com/test_cases");
     }
@@ -66,16 +81,18 @@ export class HomePage {
         await expect(this.page).toHaveURL("https://automationexercise.com/api_list");
     }
 
+    async verifyAPITestingPage(){
+        await expect(this.page).toHaveTitle('Automation Practice Website for API Testing');
+        await expect(this.page).toHaveURL("https://automationexercise.com/api_list");
+    }
+
     async clickContactUs(){
         await this.contactUsButton.click();
+    }
+
+    async verifyContactUsPage(){
         await expect(this.page).toHaveTitle('Automation Exercise - Contact Us');
         await expect(this.page).toHaveURL("https://automationexercise.com/contact_us");
     }
-
-    async verifyHomepage(){
-        await expect(this.page).toHaveTitle('Automation Exercise');
-        await expect(this.page).toHaveURL("https://automationexercise.com");
-        await expect(this.leftSideBar).toBeVisible();
-        await expect(this.featuresItems).toBeVisible();
-    }
+   
 }

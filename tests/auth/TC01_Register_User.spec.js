@@ -23,11 +23,13 @@ test.describe('Registration Test Cases', { tag: '@regression' }, () => {
         authpage = new AuthPage(page);
         registerpage = new RegisterPage(page);
         await homepage.launchHomePage();
+        await homepage.verifyHomepage();
     })
     test('TC01: Register User', { tag: ['@tc01', '@smoke'] }, async ({ page }) => {
         const markUser = users.registerUsers.Mark;
 
         await homepage.clickSignUpAndLogin();
+        await homepage.verifySignUpAndLoginPage()
         await registerpage.beginRegistration(markUser.fullName, markUser.emailId);
         await registerpage.verifySignupPageIsLoaded();
         await registerpage.fillAccountInformation(markUser.title, markUser.password, markUser.dob.day, markUser.dob.month, markUser.dob.year);
