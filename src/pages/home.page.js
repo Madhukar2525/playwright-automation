@@ -17,7 +17,9 @@ export class HomePage {
         this.apiTestingButton = this.page.getByRole('link', { name: "API Testing"});
         this.contactUsButton = this.page.getByRole('link', { name: "Contact us"});
         this.leftSideBar = this.page.locator('[class="left-sidebar"]');
-        this.featuresItems = this.page.locator('[class="features_items"]');       
+        this.featuresItems = this.page.locator('[class="features_items"]');
+        this.newUserSignupHeading = this.page.getByRole('heading', { name: "New User Signup!" });
+        this.loginHeading = this.page.getByRole('heading', { name: "Login to your account" }); 
     }
 
     async launchHomePage() {
@@ -48,6 +50,8 @@ export class HomePage {
         await this.signAndLoginButton.click();
         await expect(this.page).toHaveTitle('Automation Exercise - Signup / Login');
         await expect(this.page).toHaveURL("https://automationexercise.com/login");
+        await expect(this.newUserSignupHeading).toBeVisible();
+        await expect(this.loginHeading).toBeVisible();
     }
 
     async clickTestCases(){
