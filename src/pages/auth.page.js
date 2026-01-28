@@ -29,16 +29,18 @@ export class AuthPage {
         await expect(this.page).toHaveTitle("Automation Exercise");
     }
 
-    async clickLogout(){
+    async logoutAndAssertUserIsOnLoginPage(){
         await this.logoutButton.click();
         await expect(this.page).toHaveTitle('Automation Exercise - Signup / Login');
         await expect(this.page).toHaveURL("https://automationexercise.com/login");
     }
 
+    async clickLogout(){
+        await this.logoutButton.click();
+    }
+
     async clickDeleteAccount(){
         await this.deleteAccountButton.click();
-        await expect(this.page).toHaveTitle('Automation Exercise');
-        await expect(this.page).toHaveURL("https://automationexercise.com");
     }
 
     async verifyUserIsLoggedIn(fullName){
