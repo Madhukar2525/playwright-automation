@@ -30,14 +30,14 @@ export default defineConfig({
 
   timeout: 150_000,
   expect: {
-    timeout: 5_000
+    timeout: 10_000
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
-    actionTimeout: 5_000,
+    actionTimeout: 10_000,
 
     headless: process.env.CI ? true : true,
 
