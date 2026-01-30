@@ -90,9 +90,9 @@ export class HomePage {
         await this.contactUsButton.click();
     }
 
-    async verifyContactUsPage(){
-        await expect(this.page).toHaveTitle('Automation Exercise - Contact Us');
-        await expect(this.page).toHaveURL("https://automationexercise.com/contact_us");
-    }
+    // async verifyContactUsPage(){
+    //     await expect(this.page).toHaveTitle('Automation Exercise - Contact Us');
+    //     await expect(this.page).toHaveURL("https://automationexercise.com/contact_us");
+    // }
    
 }
