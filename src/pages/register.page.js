@@ -14,6 +14,7 @@ export class RegisterPage {
         this.signupButton = this.page.locator('[data-qa="signup-button"]');
         this.newsletterCheckbox = this.page.locator('[id="newsletter"]');
         this.offersCheckbox = this.page.locator('[id="optin"]');
+        this.signupErrorMessage = this.page.getByText('Email Address already exist!');
 
         // Account Information selectors
         this.titleRadioButton = (title) => this.page.locator(`input[name="title"][value="${title}"]`);
@@ -107,6 +108,10 @@ export class RegisterPage {
 
     async clickCreateAccountButton(){
         await this.createAccountButton.click();
+    }
+
+    async verifyExistingEmailErrorMessage(){
+        await expect(this.signupErrorMessage).toBeVisible();
     }
 
 }
