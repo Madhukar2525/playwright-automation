@@ -1,19 +1,19 @@
 import { test, expect } from '@playwright/test';
 import users from '../../src/test-data/users.json' assert { type: 'json'};
 import { HomePage } from '../../src/pages/home.page';
-import { ContactUsPage } from '../../src/pages/contactus.page';
+import { MiscPages } from '../../src/pages/misc.page';
 
 
 test.describe('Misc test cases', { tag: '@regression' }, () => {
     /** @type {HomePage} */
     let homepage;
 
-    /** @type {ContactUsPage} */
-    let contactusPage;
+    /** @type {MiscPages} */
+    let miscPages;
 
     test.beforeEach('Launch website and validate homepage', async({page}) => {
         homepage = new HomePage(page);
-        contactusPage = new ContactUsPage(page);
+        miscPages = new MiscPages(page);
 
         await homepage.launchHomePage();
         await homepage.verifyHomepage();
@@ -25,9 +25,9 @@ test.describe('Misc test cases', { tag: '@regression' }, () => {
         const message = "I cancelled one order which was prepaid, the parcel has been given to delivery person, but I havent received the refund amount yet.";
 
         await homepage.clickContactUs();
-        await contactusPage.verifyContactUsPageIsLoaded();
+        await miscPages.verifyContactUsPageIsLoaded();
 
-        await contactusPage.fillContactForm(johnUser.fullName, johnUser.emailId, subject, message);
+        await miscPages.fillContactForm(johnUser.fullName, johnUser.emailId, subject, message);
 
         // await page.setInputFiles('input[type="file"]', 'test-data/dummy_file.pdf');
         await page.locator('input[type="file"]').setInputFiles('src/test-data/dummy_file.pdf')
@@ -42,9 +42,9 @@ test.describe('Misc test cases', { tag: '@regression' }, () => {
 
         await page.locator('[data-qa="submit-button"]').click();
 
-        await contactusPage.verifySuccessMessage()
+        await miscPages.verifySuccessMessage()
 
-        await contactusPage.clickHome();
+        await miscPages.clickHome();
         await homepage.verifyHomepage();
     });
 
