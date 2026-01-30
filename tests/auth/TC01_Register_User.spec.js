@@ -45,7 +45,7 @@ test.describe('Registration Test Cases', { tag: '@regression' }, () => {
 
     test('Quick register user flow', { tag: ['@smoke', '@quick'] }, async({ page }) => {
         const registerNewUserFlow = new RegisterNewUserFlow(page);
-        const randyUser = users.registerUsers.Randy;
+        const randyUser = users.registerUsers.Tina;
         await registerNewUserFlow.registerNewUser(randyUser);
         await authpage.deleteAccount();
     })
