@@ -46,7 +46,7 @@ jobs:
         run: |
           TAG=${{ github.event.inputs.test_tag || '@regression' }}
           echo "Running tests with tag: $TAG"
-          npx playwright test --grep $TAG
+          npm run test -- --grep $TAG
 
       # 6) Upload HTML report
       - name: Upload Playwright report
