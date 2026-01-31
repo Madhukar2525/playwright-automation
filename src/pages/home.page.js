@@ -13,7 +13,7 @@ export class HomePage {
         this.productButton = this.page.getByRole('link', { name: "Products"});
         this.cartButton = this.page.getByRole('link', { name: "Cart"});
         this.signAndLoginButton = this.page.getByRole('link', { name: "Signup / Login"});
-        this.testCasesButton = this.page.getByRole('link', { name: "Test Cases"});
+        this.testCasesButton = this.page.getByRole('link', { name: 'Test Cases', exact: true });
         this.apiTestingButton = this.page.getByRole('link', { name: "API Testing"});
         this.contactUsButton = this.page.getByRole('link', { name: "Contact us"});
         this.leftSideBar = this.page.locator('[class="left-sidebar"]');
@@ -70,18 +70,8 @@ export class HomePage {
         await this.testCasesButton.click();
     }
 
-    async verifyTestCasesPage(){
-        await expect(this.page).toHaveTitle('Automation Practice Website for UI Testing - Test Cases');
-        await expect(this.page).toHaveURL("https://automationexercise.com/test_cases");
-    }
-
     async clickAPITesting(){
         await this.apiTestingButton.click();
-        await expect(this.page).toHaveTitle('Automation Practice Website for API Testing');
-        await expect(this.page).toHaveURL("https://automationexercise.com/api_list");
-    }
-
-    async verifyAPITestingPage(){
         await expect(this.page).toHaveTitle('Automation Practice Website for API Testing');
         await expect(this.page).toHaveURL("https://automationexercise.com/api_list");
     }
@@ -89,10 +79,5 @@ export class HomePage {
     async clickContactUs(){
         await this.contactUsButton.click();
     }
-
-    // async verifyContactUsPage(){
-    //     await expect(this.page).toHaveTitle('Automation Exercise - Contact Us');
-    //     await expect(this.page).toHaveURL("https://automationexercise.com/contact_us");
-    // }
    
 }
