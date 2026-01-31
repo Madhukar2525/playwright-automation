@@ -3,7 +3,6 @@ import { HomePage } from '../../src/pages/home.page';
 import { LoginPage } from '../../src/pages/login.page';
 import { AuthPage } from '../../src/pages/auth.page';
 import { ProductPage } from '../../src/pages/product.page';
-import users from '../../src/test-data/users.json' assert { type: 'json'};
 
 test.describe('Product Page Test Cases', { tag: ['@regression', '@products', '@tc08'] }, () => {
     /** @type {HomePage} */

@@ -3,10 +3,7 @@ import { AuthPage } from "../../src/pages/auth.page";
 import { LoginPage } from "../../src/pages/login.page";
 import { HomePage } from "../../src/pages/home.page";
 
-import users from '../../src/test-data/users.json' assert { type: 'json'}
-import { log } from "node:console";
-
-test.describe('Login User with incorrect email and password', { tag: '@regression'}, () => {
+test.describe('Login User with incorrect email and password', { tag: ['@regression', '@tc03']}, () => {
     /** @type {HomePage} */
     let homepage;
 
@@ -25,7 +22,7 @@ test.describe('Login User with incorrect email and password', { tag: '@regressio
         await homepage.verifyHomepage();
     })
 
-    test('TC03: Login User with incorrect email and correct password', { tag: ['@smoke', '@tc03']}, async({ page }) => {
+    test('TC03: Login User with incorrect email and correct password', { tag: ['@tc03-1']}, async({ page }) => {
         const emailId = "Steve.Irwin.wrong@gmail.com";
         const password = "Steve@123";
         await homepage.clickSignUpAndLogin();
@@ -35,7 +32,7 @@ test.describe('Login User with incorrect email and password', { tag: '@regressio
         await loginpage.verifyIncorrectLoginErrorMessage();
     });
 
-    test('TC03: Login User with correct email and incorrect password', { tag: ['@smoke', '@tc03']}, async({ page }) => {
+    test('TC03: Login User with correct email and incorrect password', { tag: ['@tc03-2']}, async({ page }) => {
         const emailId = "Steve.Irwin@gmail.com";
         const password = "IncorrectPassword";
 
