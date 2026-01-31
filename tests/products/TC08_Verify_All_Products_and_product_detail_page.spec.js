@@ -5,7 +5,7 @@ import { AuthPage } from '../../src/pages/auth.page';
 import { ProductPage } from '../../src/pages/product.page';
 import users from '../../src/test-data/users.json' assert { type: 'json'};
 
-test.describe('Product Page Test Cases', { tag: ['@regression', '@products'] }, () => {
+test.describe('Product Page Test Cases', { tag: ['@regression', '@products', '@tc08'] }, () => {
     /** @type {HomePage} */
     let homepage;
 
@@ -29,39 +29,32 @@ test.describe('Product Page Test Cases', { tag: ['@regression', '@products'] }, 
         await homepage.verifyHomepage()
     });
 
-    test('TC08: Verify All Products and product detail page', { tag: ['@tc08']}, async ({ page }) => {
-
-        // await page.getByRole('link', { name: 'Products' }).click()
+    test('TC08: Verify All Products page and 1st product detail page', { tag: ['@tc08-1']}, async ({ page }) => {
         await homepage.clickProduct();
-
-        // await expect(page).toHaveURL("https://automationexercise.com/products");
-        // await expect(page).toHaveTitle("Automation Exercise - All Products");
-        // await expect(page.getByRole('heading', { name: 'All Products' })).toBeVisible()
-        // await expect(page.locator('[class="features_items"]')).toBeVisible();
         await productPage.verifyProductPageIsLoaded();
 
-        const productsList = page.locator('[class="col-sm-4"]');
-        const count = await productsList.count();
+        const count = await productPage.getProductsCount();
         expect(count).toBeGreaterThan(0);
 
-        await productsList.nth(1).getByRole('link', { name: "View Product" }).click()
+        const productNo = 1;
+        await productPage.clickViewProductByIndex(productNo);
+        await productPage.verifyProductDetailsPageIsLoaded(productNo)
 
-        await expect(page).toHaveURL('https://automationexercise.com/product_details/1')
+        await productPage.verifyProductDetails("Blue Top", "Category: Women > Tops", "Rs. 500");
+    });
 
-        const productInfo = page.locator('[class="product-information"]')
-        await expect(productInfo).toBeVisible()
+    test('TC08: Verify All Products page and 2nd product detail page', { tag: ['@tc08-2']}, async ({ page }) => {
+        await homepage.clickProduct();
+        await productPage.verifyProductPageIsLoaded();
 
-        await expect(productInfo.locator('h2')).toHaveText('Blue Top');
+        const count = await productPage.getProductsCount();
+        expect(count).toBeGreaterThan(0);
 
-        await expect(productInfo.locator('p', { hasText: "Category: Women > Tops" })).toBeVisible()
+        const productNo = 2;
+        await productPage.clickViewProductByIndex(productNo);
+        await productPage.verifyProductDetailsPageIsLoaded(productNo);
 
-        await expect(productInfo.locator('span span')).toHaveText("Rs. 500");
-
-        await expect(productInfo.locator('p', { hasText: "Availability" })).toBeVisible()
-
-        await expect(productInfo.locator('p', { hasText: "Condition" })).toBeVisible()
-
-        await expect(productInfo.locator('p', { hasText: "Brand" })).toBeVisible()
-    })
+        await productPage.verifyProductDetails("Men Tshirt", "Category: Men > Tshirts", "Rs. 400");
+    });
 
 });
