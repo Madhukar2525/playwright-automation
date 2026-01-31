@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test -g \"@smoke\"",
+    "test:regression": "playwright test -g \"@regression\""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Madhukar2525/playwright-automation.git"
