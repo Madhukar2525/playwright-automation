@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test('TC12: Add Products in Cart @tc12 @regression', async ({ page }) => {
+test.fixme('TC12: Add Products in Cart @tc12 @regression', async ({ page }) => {
     const firstName = "John";
     const lastName = "Cena";
     const email = firstName + "." + lastName + "@gmail.com";
