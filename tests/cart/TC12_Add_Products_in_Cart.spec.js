@@ -1,83 +1,62 @@
 import { expect, test } from "@playwright/test";
+import { HomePage } from "../../src/pages/home.page";
+import { ProductPage } from "../../src/pages/product.page";
+import { CartPage } from "../../src/pages/cart.page";
 
-test.fixme('TC12: Add Products in Cart @tc12 @regression', async ({ page }) => {
-    const firstName = "John";
-    const lastName = "Cena";
-    const email = firstName + "." + lastName + "@gmail.com";
-    const fullName = firstName + " " + lastName;
-    const password = firstName + "@123"
+test.describe('Add Products in Cart test cases', { tag: ['@regression', '@cart'] }, () => {
+    /** @type {HomePage} */
+    let homePage;
 
-    // Launch website and verify homepage
-    await page.goto("https://automationexercise.com", { waitUntil: 'domcontentloaded' });
-    await expect(page).toHaveURL("https://automationexercise.com");
-    await expect(page).toHaveTitle("Automation Exercise");
+    /** @type {ProductPage} */
+    let productPage;
 
-    // // Login with email and password
-    // await page.locator('text=Signup / Login').click();
-    // await expect(page).toHaveURL("https://automationexercise.com/login");
-    // await expect(page).toHaveTitle("Automation Exercise - Signup / Login");
+    /** @type {CartPage} */
+    let cartPage;
 
-    // await page.locator('[data-qa="login-email"]').fill(email);
-    // await page.locator('[data-qa="login-password"]').fill(password)
-    // await page.locator('[data-qa="login-button"]').click()
+    test.beforeEach("Launch website and verify homepage", async ({ page }) => {
+        homePage = new HomePage(page);
+        productPage = new ProductPage(page);
+        cartPage = new CartPage(page);
 
-    // const username = page.locator('text=Logged in as');
-    // await expect(username).toBeVisible();
-    // await expect(username).toContainText(fullName)
-    // // await expect(username.locator('b')).toHaveText(fullName);
+        await homePage.launchHomePage();
+        await homePage.verifyHomepage();
+    });
+    test('TC12: Add Products in Cart', { tag: ['@tc12'] }, async ({ page }) => {
 
-    // Go to Products section
-    await page.getByRole('link', { name: 'Products' }).click()
-    await expect(page).toHaveURL("https://automationexercise.com/products");
-    await expect(page).toHaveTitle("Automation Exercise - All Products");
-    await expect(page.getByRole('heading', { name: 'All Products' })).toBeVisible()
-    await expect(page.locator('[class="features_items"]')).toBeVisible();
+        // -- Go to Products section
+        await homePage.clickProduct();
+        await productPage.verifyProductPageIsLoaded();
 
-    const productsList = page.locator('[class="product-image-wrapper"]');
-    const productsCount = await productsList.count();
-    expect(productsCount).toBeGreaterThan(0);
+        const count = await productPage.getProductsCount();
+        expect(count).toBeGreaterThan(0);
 
-    // -- Add 1st product to the cart
-    const firstProduct = productsList.nth(0);
-    await firstProduct.scrollIntoViewIfNeeded();
-    await firstProduct.hover();
-    await firstProduct.locator('[class="btn btn-default add-to-cart"]').nth(0).click();
+        // -- Add 1st product to the cart
+        await productPage.addProductToCartByIndex(0);
+        await productPage.verifyAddToCartConfirmation();
 
-    // -- Click Continue shopping button
-    await page.getByRole('button', { name: "Continue Shopping"}).click();
+        // -- Click Continue shopping button
+        await page.getByRole('button', { name: "Continue Shopping" }).click();
 
-    // -- Add 2nd product to the cart
-    const secondProduct = productsList.nth(1);
-    await secondProduct.scrollIntoViewIfNeeded();
-    await secondProduct.hover();
-    await secondProduct.locator('[class="btn btn-default add-to-cart"]').nth(1).click();
+        // -- Add 2nd product to the cart
+        await productPage.addProductToCartByIndex(1);
+        await productPage.verifyAddToCartConfirmation();
 
-    // -- Click View Cart
-    const modal = page.locator('[class="modal-content"]')
-    await expect(modal).toBeVisible();
-    await expect(modal.locator('[class="text-center"]', { hasText: 'Your product has been added to cart.'})).toBeVisible()
-    await modal.locator('a', { hasText: "View Cart"}).click()
-    // Validations
-    await expect(page).toHaveURL("https://automationexercise.com/view_cart");
-    await expect(page).toHaveTitle("Automation Exercise - Checkout");
+        // -- Click View Cart
+        await page.getByRole('link', { name: "View Cart" }).click();
 
-    // -- Verify Product details
-    const cartRows = page.locator('[id="cart_info_table"]').locator('tbody').locator('tr');
-    // const cartRows = page.locator('#cart_info_table tbody tr')
-    await expect(cartRows).toHaveCount(2);
+        // -- Validations
+        await cartPage.verifyCartPageIsLoaded();
 
-    // -- Verify first item --
-    const firstItem = cartRows.nth(0);
-    const priceText = await firstItem.locator('[class="cart_price"]').innerText();
-    const quantityText = await firstItem.locator('[class="cart_quantity"]').innerText();
-    const totalText = await firstItem.locator('[class="cart_total"]').innerText();
-    // console.log("deatils are: ", priceText, quantityText, totalText)
 
-    const price = Number(priceText.replace("Rs. ", ""));
-    const quantity = Number(quantityText);
-    const total = Number(totalText.replace("Rs. ", ""));
+        // -- Verify Product details
+        const cartProductsCount = await cartPage.getCartProductCount()
+        expect(cartProductsCount).toBe(2);
 
-    expect(price).toBe(500)
-    expect(quantity).toBe(1)
-    expect(total).toBe(price*quantity)
-})
+        // -- Verify first item details --
+        await cartPage.verifyCartItemDetailsByIndex(1, { price: 500, quantity: 1 });
+
+        // -- Verify second item details --
+        await cartPage.verifyCartItemDetailsByIndex(2, { price: 400, quantity: 1 });
+    });
+
+});
