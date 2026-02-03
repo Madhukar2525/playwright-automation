@@ -19,7 +19,7 @@ test.describe('Login User with incorrect email and password', { tag: ['@regressi
         loginpage = new LoginPage(page);
 
         await homepage.launchHomePage();
-        await homepage.verifyHomepage();
+        await homepage.verifyHomepageIsLoaded();
     })
 
     test('TC03: Login User with incorrect email and correct password', { tag: ['@tc03-1']}, async({ page }) => {

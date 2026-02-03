@@ -14,7 +14,7 @@ test.describe('Search Product', { tag: ['@regression', '@products'] }, () => {
         productPage = new ProductPage(page);
 
         await homePage.launchHomePage();
-        await homePage.verifyHomepage();
+        await homePage.verifyHomepageIsLoaded();
     });
 
     test('TC09: Search Product', { tag: ['@tc09']}, async ({ page }) => {

@@ -22,7 +22,7 @@ test.describe('Registration with Existing Emailid Test Cases', { tag: '@regressi
         authpage = new AuthPage(page);
         registerpage = new RegisterPage(page);
         await homepage.launchHomePage();
-        await homepage.verifyHomepage();
+        await homepage.verifyHomepageIsLoaded();
     })
     test('TC05: Register User with existing email', { tag: ['@tc05'] }, async ({ page }) => {
         const steveUser = users.loginUsers.Steve;

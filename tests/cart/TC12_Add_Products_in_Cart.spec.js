@@ -19,7 +19,7 @@ test.describe('Add Products in Cart test cases', { tag: ['@regression', '@cart']
         cartPage = new CartPage(page);
 
         await homePage.launchHomePage();
-        await homePage.verifyHomepage();
+        await homePage.verifyHomepageIsLoaded();
     });
     test('TC12: Add Products in Cart', { tag: ['@tc12'] }, async ({ page }) => {
 
@@ -31,14 +31,14 @@ test.describe('Add Products in Cart test cases', { tag: ['@regression', '@cart']
         expect(count).toBeGreaterThan(0);
 
         // -- Add 1st product to the cart
-        await productPage.addProductToCartByIndex(0);
+        await productPage.addProductToCartFromList(0);
         await productPage.verifyAddToCartConfirmation();
 
         // -- Click Continue shopping button
         await page.getByRole('button', { name: "Continue Shopping" }).click();
 
         // -- Add 2nd product to the cart
-        await productPage.addProductToCartByIndex(1);
+        await productPage.addProductToCartFromList(1);
         await productPage.verifyAddToCartConfirmation();
 
         // -- Click View Cart

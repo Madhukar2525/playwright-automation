@@ -16,7 +16,7 @@ test.describe('Misc test cases', { tag: ['@regression', '@misc'] }, () => {
         miscPages = new MiscPages(page);
 
         await homepage.launchHomePage();
-        await homepage.verifyHomepage();
+        await homepage.verifyHomepageIsLoaded();
     });
 
     test('TC06: Contact Us Form', { tag: ['@tc06'] }, async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe('Misc test cases', { tag: ['@regression', '@misc'] }, () => {
 
         await miscPages.verifySuccessMessage()
         await miscPages.clickHome();
-        await homepage.verifyHomepage();
+        await homepage.verifyHomepageIsLoaded();
     });
 
     test('TC07: Verify Test Cases Page', { tag: ['@tc07'] }, async ({ page }) => {

@@ -21,7 +21,7 @@ test.describe('Login Test Cases', { tag: '@regression' }, () => {
 
         // Launch website
         await homepage.launchHomePage();
-        await homepage.verifyHomepage()
+        await homepage.verifyHomepageIsLoaded()
     });
     test('TC02: Login User with correct email and password', { tag: ['@tc02', '@smoke'] }, async ({ page }) => {
         const johnUser = users.loginUsers.John;
@@ -30,7 +30,7 @@ test.describe('Login Test Cases', { tag: '@regression' }, () => {
         await homepage.verifySignUpAndLoginPage()
         await loginpage.performLogin(johnUser.emailId, johnUser.password);
         await authpage.verifyUserIsLoggedIn(johnUser.fullName);
-        await homepage.verifyHomepage();
+        await homepage.verifyHomepageIsLoaded();
         await authpage.logoutAndAssertUserIsOnLoginPage();
     });
 

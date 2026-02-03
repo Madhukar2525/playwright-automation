@@ -25,7 +25,7 @@ test.describe('Product Page Test Cases', { tag: ['@regression', '@products', '@t
 
         // Launch website
         await homepage.launchHomePage();
-        await homepage.verifyHomepage()
+        await homepage.verifyHomepageIsLoaded()
     });
 
     test('TC08: Verify All Products page and 1st product detail page', { tag: ['@tc08-1']}, async ({ page }) => {
