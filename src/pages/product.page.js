@@ -12,7 +12,8 @@ export class ProductPage {
         this.searchText = null;
         this.productsHeading = page.getByRole('heading', { name: 'All Products' });
         this.featuresItems = page.locator('[class="features_items"]');
-        this.productsList = page.locator('[class="col-sm-4"]');
+        // this.productsList = page.locator('[class="col-sm-4"]');
+        this.productsList = page.locator('[class="product-image-wrapper"]')
         this.productInfo = page.locator('[class="product-information"]');
         this.productName = this.productInfo.locator('h2');
         this.productCategory = this.productInfo.locator('p', { hasText: "Category:" });
@@ -23,6 +24,7 @@ export class ProductPage {
         this.searchProductTextbox = page.locator('[id="search_product"]');
         this.searchIconButton = page.locator('[id="submit_search"]');
         this.searchedProductsList = page.locator('[class="productinfo text-center"]');
+        this.addToCartModal = page.locator('[class="modal-content"]');
     }
 
     async getProductsCount() {
@@ -37,7 +39,7 @@ export class ProductPage {
     }
 
     async clickViewProductByIndex(index) {
-        await this.productsList.nth(index).getByRole('link', { name: "View Product" }).click()
+        await this.productsList.nth(index-1).getByRole('link', { name: "View Product" }).click()
     }
 
     async verifyProductDetailsPageIsLoaded(index) {
@@ -87,5 +89,17 @@ export class ProductPage {
             console.log(`Product name of ${i + 1} is: `, productName);
             expect.soft(productName).toContain(this.searchText.toLowerCase())
         }
+    }
+
+    async addProductToCartByIndex(index){
+        const targetProduct = this.productsList.nth(index);
+        await targetProduct.scrollIntoViewIfNeeded();
+        await targetProduct.hover();
+        await targetProduct.locator('[class="btn btn-default add-to-cart"]').nth(index).click();
+    }
+
+    async verifyAddToCartConfirmation(){
+        await expect(this.addToCartModal).toBeVisible();
+        await expect(this.addToCartModal.locator('[class="text-center"]', { hasText: 'Your product has been added to cart.' })).toBeVisible();
     }
 }
