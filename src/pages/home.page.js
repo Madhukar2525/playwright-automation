@@ -30,7 +30,7 @@ export class HomePage {
         await this.homeButton.click();
     }
 
-    async verifyHomepage(){
+    async verifyHomepageIsLoaded(){
         await expect(this.page).toHaveTitle('Automation Exercise');
         await expect(this.page).toHaveURL("https://automationexercise.com");
         await expect(this.leftSideBar).toBeVisible();
@@ -41,18 +41,8 @@ export class HomePage {
         await this.productButton.click();
     }
 
-    async verifyProductPage(){
-        await expect(this.page).toHaveTitle('Automation Exercise - All Products');
-        await expect(this.page).toHaveURL("https://automationexercise.com/products");
-    }
-
     async clickCart(){
         await this.cartButton.click();
-    }
-
-    async verifyCartPage(){
-        await expect(this.page).toHaveTitle('Automation Exercise - Checkout');
-        await expect(this.page).toHaveURL("https://automationexercise.com/view_cart");
     }
 
     async clickSignUpAndLogin(){
