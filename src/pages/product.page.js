@@ -25,6 +25,11 @@ export class ProductPage {
         this.searchIconButton = page.locator('[id="submit_search"]');
         this.searchedProductsList = page.locator('[class="productinfo text-center"]');
         this.addToCartModal = page.locator('[class="modal-content"]');
+        this.quantityBox = page.locator('[id="quantity"]');
+        this.viewCartLink = page.locator('a', { hasText: "View Cart" });
+
+        // Buttons
+        this.addToCartButton = page.getByRole('button', { name: "Add to cart" })
     }
 
     async getProductsCount() {
@@ -39,12 +44,13 @@ export class ProductPage {
     }
 
     async clickViewProductByIndex(index) {
-        await this.productsList.nth(index-1).getByRole('link', { name: "View Product" }).click()
+        await this.productsList.nth(index-1).getByRole('link', { name: "View Product" }).click();
     }
 
     async verifyProductDetailsPageIsLoaded(index) {
-        await expect(this.page).toHaveURL(`https://automationexercise.com/product_details/${index}`)
-        await expect(this.productInfo).toBeVisible()
+        await expect(this.page).toHaveURL(`https://automationexercise.com/product_details/${index}`);
+        await expect(this.page).toHaveTitle("Automation Exercise - Product Details");
+        await expect(this.productInfo).toBeVisible();
     }
 
     async verifyProductDetails(productName, category, price) {
@@ -91,7 +97,7 @@ export class ProductPage {
         }
     }
 
-    async addProductToCartByIndex(index){
+    async addProductToCartFromList(index){
         const targetProduct = this.productsList.nth(index);
         await targetProduct.scrollIntoViewIfNeeded();
         await targetProduct.hover();
@@ -101,5 +107,18 @@ export class ProductPage {
     async verifyAddToCartConfirmation(){
         await expect(this.addToCartModal).toBeVisible();
         await expect(this.addToCartModal.locator('[class="text-center"]', { hasText: 'Your product has been added to cart.' })).toBeVisible();
+    }
+
+    async setProductQuantity(quantity){
+        await this.quantityBox.clear();
+        await this.quantityBox.fill(String(quantity));
+    }
+
+    async clickAddToCart(){
+        await this.addToCartButton.click();
+    }
+
+    async clickViewCart(){
+        await this.viewCartLink.click();
     }
 }
