@@ -17,8 +17,7 @@ export class RegisterNewUserFlow{
     }
 
     async registerNewUser(user){
-        await this.homepage.clickSignUpAndLogin();
-        await this.homepage.verifySignUpAndLoginPage()
+        await this.homepage.verifySignUpAndLoginPage();
         await this.registerpage.beginRegistration(user.fullName, user.emailId);
         await this.registerpage.verifySignupPageIsLoaded();
         await this.registerpage.fillAccountInformation(user.title, user.password, user.dob.day, user.dob.month, user.dob.year);
