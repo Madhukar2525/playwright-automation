@@ -3,7 +3,7 @@ import users from '../../src/test-data/users.json' assert { type: 'json'};
 import { HomePage } from '../../src/pages/home.page';
 import { AuthPage } from '../../src/pages/auth.page';
 import { RegisterPage } from '../../src/pages/register.page';
-import { RegisterNewUserFlow } from '../../src/flows/registerNewUser.flow';
+import { Flows } from '../../src/flows/flows';
 
 test.describe('Registration Test Cases', { tag: '@regression' }, () => {
     /** @type {HomePage} */
@@ -14,9 +14,6 @@ test.describe('Registration Test Cases', { tag: '@regression' }, () => {
 
     /** @type {RegisterPage} */
     let registerpage;
-
-    // /** @type {RegisterNewUserFlow} */
-    // let registerNewUserFlow;
 
     test.beforeEach('Launch homepage and validate', async ({ page }) => {
         homepage = new HomePage(page);
@@ -44,11 +41,11 @@ test.describe('Registration Test Cases', { tag: '@regression' }, () => {
     });
 
     test('Quick register user flow', { tag: ['@smoke', '@quick'] }, async({ page }) => {
-        const registerNewUserFlow = new RegisterNewUserFlow(page);
+        const flows = new Flows(page);
         const randyUser = users.registerUsers.Tina;
         
         await homepage.clickSignUpAndLogin();
-        await registerNewUserFlow.registerNewUser(randyUser);
+        await flows.registerNewUser(randyUser);
         await authpage.deleteAccount();
     })
 });
