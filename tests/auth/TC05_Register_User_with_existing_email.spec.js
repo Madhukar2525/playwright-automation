@@ -14,9 +14,6 @@ test.describe('Registration with Existing Emailid Test Cases', { tag: '@regressi
     /** @type {RegisterPage} */
     let registerpage;
 
-    // /** @type {RegisterNewUserFlow} */
-    // let registerNewUserFlow;
-
     test.beforeEach('Launch homepage and validate', async ({ page }) => {
         homepage = new HomePage(page);
         authpage = new AuthPage(page);
