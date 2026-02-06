@@ -25,7 +25,7 @@
             "title": "Mrs",
             "firstName": "Tina",
             "lastName": "Miller",
-            "emailId": "david.miller@gmail.com",
+            "emailId": "tina.miller@gmail.com",
             "fullName": "Tina Miller",
             "password": "Tina@123",
             "dob":{
@@ -41,6 +41,27 @@
             "city": "New York",
             "zipcode": "400010",
             "mobile": "9999887654"
+        },
+        "Tom": {
+            "title": "Mr",
+            "firstName": "Tom",
+            "lastName": "Rollins",
+            "emailId": "tom.rollins@gmail.com",
+            "fullName": "Tom Rollins",
+            "password": "Tom@123",
+            "dob":{
+                "day": "5",
+                "month": "8",
+                "year": "1985"
+            },
+            "company": "Flipkart",
+            "address": "A-110, Blossom House",
+            "address2": "Sector B",
+            "country": "Canada",
+            "state": "Los Angeles",
+            "city": "New York",
+            "zipcode": "400444",
+            "mobile": "9012345678"
         },
         "Randy": {
             "title": "Mr",
@@ -78,6 +99,27 @@
             "emailId": "John.Cena@gmail.com",
             "password": "John@123",
             "fullName": "John Cena"
+        },
+        "Seth": {
+            "title": "Mr",
+            "firstName": "Seth",
+            "lastName": "Rollins",
+            "emailId": "seth.rollins@gmail.com",
+            "fullName": "Seth Rollins",
+            "password": "Seth@123",
+            "dob":{
+                "day": "27",
+                "month": "4",
+                "year": "1982"
+            },
+            "company": "WWE",
+            "address": "330, 7 Bunglow street",
+            "address2": "opp. to post office",
+            "country": "Singapore",
+            "state": "Maharashtra",
+            "city": "Mumbai",
+            "zipcode": "400003",
+            "mobile": "9123456789"
         }
     }
 }
