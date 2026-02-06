@@ -21,4 +21,15 @@ export class CheckoutPage{
         await expect(this.page.locator('h3', { hasText: "Your delivery address"})).toBeVisible();
         await expect(this.page.locator('h3', { hasText: "Your billing address"})).toBeVisible();
     }
+
+    async verifyAddressDetails(){
+        await expect(this.addressDetailsHeading).toBeVisible();
+        await expect(this.page.getByRole('heading', { name: "Review Your Order"})).toBeVisible();
+        await expect(this.page.locator('h3', { hasText: "Your delivery address"})).toBeVisible();
+        await expect(this.page.locator('h3', { hasText: "Your billing address"})).toBeVisible();
+    }
+
+    async reviewYourOrder(){
+        
+    }
 }
