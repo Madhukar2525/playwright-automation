@@ -44,7 +44,7 @@ export class ProductPage {
     }
 
     async clickViewProductByIndex(index) {
-        await this.productsList.nth(index-1).getByRole('link', { name: "View Product" }).click();
+        await this.productsList.nth(index - 1).getByRole('link', { name: "View Product" }).click();
     }
 
     async verifyProductDetailsPageIsLoaded(index) {
@@ -78,7 +78,7 @@ export class ProductPage {
         await expect(this.page.getByRole('heading', { name: "Searched Products" })).toBeVisible();
     }
 
-    async getSearchedProductsCount(){
+    async getSearchedProductsCount() {
         return await this.searchedProductsList.count();
     }
 
@@ -88,7 +88,7 @@ export class ProductPage {
                 'Search text is not set. Call searchForProduct() first.'
             );
         }
-        
+
         const sPCount = await this.getSearchedProductsCount();
         for (let i = 0; i < sPCount; i++) {
             const productName = (await this.searchedProductsList.nth(i).locator('p').innerText()).toLowerCase();
@@ -97,28 +97,30 @@ export class ProductPage {
         }
     }
 
-    async addProductToCartFromList(index){
-        const targetProduct = this.productsList.nth(index);
+    async addProductToCartFromList(index) {
+        const targetProduct = this.productsList.nth(index - 1);
         await targetProduct.scrollIntoViewIfNeeded();
         await targetProduct.hover();
-        await targetProduct.locator('[class="btn btn-default add-to-cart"]').nth(index).click();
+        const addToCartButton = targetProduct.locator('[class="btn btn-default add-to-cart"]').nth(1);
+        // const addToCartButton = targetProduct.locator('[class="btn btn-default add-to-cart"]');
+        await addToCartButton.click();
     }
 
-    async verifyAddToCartConfirmation(){
+    async verifyAddToCartConfirmation() {
         await expect(this.addToCartModal).toBeVisible();
         await expect(this.addToCartModal.locator('[class="text-center"]', { hasText: 'Your product has been added to cart.' })).toBeVisible();
     }
 
-    async setProductQuantity(quantity){
+    async setProductQuantity(quantity) {
         await this.quantityBox.clear();
         await this.quantityBox.fill(String(quantity));
     }
 
-    async clickAddToCart(){
+    async clickAddToCart() {
         await this.addToCartButton.click();
     }
 
-    async clickViewCart(){
+    async clickViewCart() {
         await this.viewCartLink.click();
     }
 }
