@@ -38,7 +38,7 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     // launchOptions: {
-    //   slowMo: 2000
+    //   slowMo: 1000
     // },
 
     actionTimeout: 10_000,
