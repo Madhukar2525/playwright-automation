@@ -10,6 +10,8 @@ export class CartPage {
     constructor(page) {
         this.page = page;
         this.cartRows = page.locator('[id="cart_info_table"]').locator('tbody').locator('tr');
+        this.proceedToCheckoutButton = page.locator('[class="btn btn-default check_out"]');
+        this.registerAndLoginLink = page.locator('a', { hasText: "Register / Login" });
     }
 
     async verifyCartPageIsLoaded() {
@@ -37,5 +39,13 @@ export class CartPage {
             expect(actualQuantity).toBe(quantity);
             expect(actualTotal).toBe(price * quantity);
         });
+    }
+
+    async clickProceedToCheckout(){
+        await this.proceedToCheckoutButton.click();
+    }
+
+    async clickRegisterAndLogin() {
+        await this.registerAndLoginLink.click();
     }
 }
