@@ -42,10 +42,10 @@ test.describe('Registration Test Cases', { tag: '@regression' }, () => {
 
     test('Quick register user flow', { tag: ['@smoke', '@quick'] }, async({ page }) => {
         const flows = new Flows(page);
-        const randyUser = users.registerUsers.Tina;
+        const tinaUser = users.registerUsers.Tina;
         
         await homepage.clickSignUpAndLogin();
-        await flows.registerNewUser(randyUser);
+        await flows.registerNewUser(tinaUser);
         await authpage.deleteAccount();
     })
 });
